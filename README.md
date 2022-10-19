@@ -1,13 +1,13 @@
 # TileVania
 
-A mario clone.
+A 2d platformer inspired by Mario 
 
 ![image](https://user-images.githubusercontent.com/91905169/196072930-a01c3db7-17fc-4557-bc60-5b064724f48b.png)
 
 ## Features
-- Collect coins 
+- Collect coins and earn the highest score
 - Defeat enemies with your bow and arrow
-- Jump over hazards
+- Jump over hazards 
 - Complete 3 different levels
 
 ## Tech Stack
