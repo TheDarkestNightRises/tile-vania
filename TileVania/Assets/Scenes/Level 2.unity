@@ -752,7 +752,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1001 &587148414
+--- !u!1001 &653900796
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -41172,11 +41172,11 @@ PrefabInstance:
       objectReference: {fileID: 2035422774}
     - target: {fileID: 8175676877175622178, guid: dd43bea84c3ac16478e9eb6ec277eea1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.147543
+      value: -16.180643
       objectReference: {fileID: 0}
     - target: {fileID: 8175676877175622178, guid: dd43bea84c3ac16478e9eb6ec277eea1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.667082
+      value: 7.6670823
       objectReference: {fileID: 0}
     - target: {fileID: 8175676877175622178, guid: dd43bea84c3ac16478e9eb6ec277eea1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41184,7 +41184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8175676877175622365, guid: dd43bea84c3ac16478e9eb6ec277eea1, type: 3}
       propertyPath: orthographic size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8175676877194238338, guid: dd43bea84c3ac16478e9eb6ec277eea1, type: 3}
       propertyPath: m_Follow
