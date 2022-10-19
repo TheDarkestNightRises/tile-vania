@@ -144,6 +144,8 @@ public class PlayerMovement : MonoBehaviour
             myRigidBody.velocity = deathKick;
             myImpulseSource.GenerateImpulse(deathImpulse);
             Invoke(nameof(RemovePhysics), 1f);
+            GameSession gameSession = FindObjectOfType<GameSession>();
+            gameSession.ProcessPlayerDeath();
         }
     }
 
