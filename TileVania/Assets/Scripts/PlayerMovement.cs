@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,13 +12,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
-    
+    [SerializeField] Vector2 deathKick = new Vector2(10f, 10f);
+    [SerializeField] float deathImpulse = 1f;
+
+
     private Vector2 moveInput;
     private Rigidbody2D myRigidBody;
     private Animator myAnimator;
     private CapsuleCollider2D myBodyCollider;
     private BoxCollider2D myFeetCollider;
+    private CinemachineImpulseSource myImpulseSource;
     private float gravityScaleAtStart;
+    private bool isAlive = true;
 
     private void Awake()
     {
@@ -25,14 +31,17 @@ public class PlayerMovement : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myBodyCollider = GetComponent<CapsuleCollider2D>();
         myFeetCollider = GetComponent<BoxCollider2D>();
+        myImpulseSource = GetComponent<CinemachineImpulseSource>();
         gravityScaleAtStart = myRigidBody.gravityScale;
     }
 
     void Update()
     {
+        if (!isAlive) return; 
         Run();
         FlipSprite();
         ClimbLadder();
+        Die();
     }
 
     private void Run()
@@ -44,11 +53,13 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue value) 
     {
+        if (!isAlive) return;
         moveInput = value.Get<Vector2>();
     }
 
     void OnJump(InputValue value)
     {
+        if (!isAlive) return;
         if (!myFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) return; 
 
         if (value.isPressed)
@@ -87,5 +98,22 @@ public class PlayerMovement : MonoBehaviour
         myRigidBody.velocity = climbVelocity;
         myAnimator.SetBool("isClimbing", PlayerHasVerticalSpeed());
         myRigidBody.gravityScale = 0f;
+    }
+
+    private void Die()
+    {
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")))
+        {
+            isAlive = false;
+            myAnimator.SetTrigger("Dying");
+            myRigidBody.velocity = deathKick;
+            myImpulseSource.GenerateImpulse(deathImpulse);
+            Invoke(nameof(RemovePhysics), 1f);
+        }
+    }
+
+    private void RemovePhysics()
+    {
+        myRigidBody.simulated = false;
     }
 }
