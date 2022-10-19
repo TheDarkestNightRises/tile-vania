@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 304889524}
   - component: {fileID: 304889526}
   - component: {fileID: 304889525}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Water Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43504,7 +43504,7 @@ GameObject:
   - component: {fileID: 1480416249}
   m_Layer: 11
   m_Name: Goober (Enemy)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

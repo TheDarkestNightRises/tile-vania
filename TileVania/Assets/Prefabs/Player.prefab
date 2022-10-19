@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6400870072312116632}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   climbSpeed: 5
   deathKick: {x: 10, y: 10}
   deathImpulse: 1
-  bullet: {fileID: 0}
+  bullet: {fileID: 9027261683794541001, guid: 345efa1f250966d43943ff8e5c6dd0a8, type: 3}
   bulletSpawn: {fileID: 40956146522179224}
 --- !u!61 &1475920545671688191
 BoxCollider2D:
@@ -301,7 +301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198168795155445729}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: -0.13, z: 0}
+  m_LocalPosition: {x: 0.953, y: 0.091, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
