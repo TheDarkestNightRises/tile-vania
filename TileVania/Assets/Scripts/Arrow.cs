@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Arrow : MonoBehaviour
 {
-    [SerializeField] float bulletSpeed = 5f;
-    [SerializeField] float bulletLifeTime = 1f;
+    [SerializeField] float arrowSpeed = 30f;
+    [SerializeField] float arrowLifeTime = 1f;
     Rigidbody2D myRigidbody;
     PlayerMovement player;
     float xSpeed;
@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<PlayerMovement>();
-        xSpeed = player.transform.localScale.x * bulletSpeed;
+        xSpeed = player.transform.localScale.x * arrowSpeed;
     }
 
     void Update()
@@ -28,16 +28,16 @@ public class Bullet : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
-        DestroyBullet();
+        DestroyArrow();
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Invoke(nameof(DestroyBullet), bulletLifeTime);
+        Invoke(nameof(DestroyArrow), arrowLifeTime);
     }
 
 
-    private void DestroyBullet()
+    private void DestroyArrow()
     {
         Destroy(gameObject);
     }

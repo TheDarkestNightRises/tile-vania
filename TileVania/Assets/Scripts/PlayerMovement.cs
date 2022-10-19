@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float deathImpulse = 1f;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform bulletSpawn;
+    [SerializeField] float timeBetweenAttacks = 2f;
+
 
 
     private Vector2 moveInput;
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private CinemachineImpulseSource myImpulseSource;
     private float gravityScaleAtStart;
     private bool isAlive = true;
+    private float timeSinceLastAttack = Mathf.Infinity;
 
     private void Awake()
     {
@@ -39,7 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!isAlive) return; 
+        if (!isAlive) return;
+        timeSinceLastAttack += Time.deltaTime;
         Run();
         FlipSprite();
         ClimbLadder();
@@ -73,7 +77,30 @@ public class PlayerMovement : MonoBehaviour
     void OnFire(InputValue value)
     {
         if (!isAlive) return;
-        Instantiate(bullet, bulletSpawn.position, transform.rotation);
+        if (timeSinceLastAttack > timeBetweenAttacks)
+        {
+            ShootArrow();
+            timeSinceLastAttack = 0f;
+        }
+    }
+
+    private void ShootArrow()
+    {
+        myAnimator.SetBool("isShooting", true);
+        Invoke(nameof(InstantiateArrow), timeBetweenAttacks);
+    }
+
+    private void InstantiateArrow()
+    {
+        if (transform.localScale.x > Mathf.Epsilon)
+        {
+            Instantiate(bullet, bulletSpawn.position, transform.rotation);
+        }
+        else
+        {
+            Instantiate(bullet, bulletSpawn.position, transform.rotation * Quaternion.Euler(0f,180f,0f));
+        }
+        myAnimator.SetBool("isShooting", false);
     }
 
     private void FlipSprite()
